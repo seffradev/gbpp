@@ -16,6 +16,7 @@ const int ALPHA_OPAQUE = 255;
 const int         WINDOW_WIDTH  = 160;
 const int         WINDOW_HEIGHT = 144;
 const std::string WINDOW_TITLE  = "GameBoy++";
+const auto        SCALE         = 4;
 
 auto main(int, char*[]) noexcept -> int {
     auto _ = Logger{Level::Trace};
@@ -23,8 +24,8 @@ auto main(int, char*[]) noexcept -> int {
     std::default_random_engine             generator;
     std::uniform_int_distribution<uint8_t> distribution{};
 
-    auto window = Window{WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE};
-    auto screen = Screen<WINDOW_WIDTH, WINDOW_HEIGHT>{};
+    auto window = Window{WINDOW_WIDTH * SCALE, WINDOW_HEIGHT * SCALE, WINDOW_TITLE};
+    auto screen = Screen<WINDOW_WIDTH, WINDOW_HEIGHT>{SCALE};
 
     while (!window.ShouldClose()) {
         auto _ = window.CreateDrawContext();

@@ -12,18 +12,19 @@ namespace graphics {
 template <size_t width, size_t height>
 class Screen {
 public:
-    constexpr Screen()
+    constexpr Screen(float scale)
         : color_matrix({}),
           image(Image{.data    = color_matrix.get().data(),
                       .width   = width,
                       .height  = height,
                       .mipmaps = 1,
                       .format  = PIXELFORMAT_UNCOMPRESSED_R8G8B8A8}),
-          screen(LoadTextureFromImage(image)) {}
+          screen(LoadTextureFromImage(image)),
+          scale(scale) {}
 
     constexpr void Draw() const {
         UpdateTexture(screen, image.data);
-        DrawTexture(screen, 0, 0, WHITE);
+        DrawTextureEx(screen, {0, 0}, 0, scale, WHITE);
     }
 
     constexpr auto operator[](std::size_t index) -> Color& { return color_matrix[index]; }
@@ -40,6 +41,7 @@ private:
     ColorMatrix<width, height> color_matrix;
     Image                      image;
     Texture2D                  screen;
+    float                      scale;
 };
 
 }
