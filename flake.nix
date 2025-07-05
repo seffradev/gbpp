@@ -23,6 +23,7 @@
             pkg-config
             libGL
             xorg.libX11
+            pre-commit
         ];
     };
   };

@@ -1,0 +1,18 @@
+---
+Checks:           'clang-diagnostic-*,clang-analyzer-*,cppcoreguidelines-*,modernize-*'
+WarningsAsErrors: 'clang-diagnostic-*,clang-analyzer-*,cppcoreguidelines-*,modernize-*'
+HeaderFilterRegex: ''
+ExcludeHeaderFilterRegex: ''
+HeaderFileExtensions:
+  - ''
+  - h
+  - hh
+  - hpp
+  - hxx
+ImplementationFileExtensions:
+  - c
+  - cc
+  - cpp
+  - cxx
+SystemHeaders: false
+...
