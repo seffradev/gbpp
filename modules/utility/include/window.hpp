@@ -16,10 +16,10 @@ public:
         window.ClearBackground(RAYWHITE);
     }
 
-    constexpr DrawContext(const DrawContext&)            = delete;
-    constexpr DrawContext& operator=(const DrawContext&) = delete;
-    constexpr DrawContext(DrawContext&&)                 = delete;
-    constexpr DrawContext& operator=(DrawContext&&)      = delete;
+    constexpr DrawContext(const DrawContext&)                    = delete;
+    constexpr auto operator=(const DrawContext&) -> DrawContext& = delete;
+    constexpr DrawContext(DrawContext&&)                         = delete;
+    constexpr auto operator=(DrawContext&&) -> DrawContext&      = delete;
 
     constexpr ~DrawContext() { window.EndDrawing(); }
 

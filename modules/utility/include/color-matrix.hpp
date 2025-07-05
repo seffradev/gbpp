@@ -14,17 +14,17 @@ private:
     std::array<Color, width * height> data;
 
 public:
-    constexpr decltype(data)& get() { return data; }
+    constexpr auto get() -> decltype(data)& { return data; }
 
-    constexpr const decltype(data)& get() const { return data; }
+    constexpr auto get() const -> const decltype(data)& { return data; }
 
-    constexpr Color& operator[](std::size_t index) { return data[index]; }
+    constexpr auto operator[](std::size_t index) -> Color& { return data[index]; }
 
-    constexpr const Color& operator[](std::size_t index) const { return data[index]; }
+    constexpr auto operator[](std::size_t index) const -> const Color& { return data[index]; }
 
-    constexpr Color& operator[](std::size_t x, std::size_t y) { return data[y * width + x]; }
+    constexpr auto operator[](std::size_t x, std::size_t y) -> Color& { return data[y * width + x]; }
 
-    constexpr const Color& operator[](std::size_t x, std::size_t y) const { return data[y * width + x]; }
+    constexpr auto operator[](std::size_t x, std::size_t y) const -> const Color& { return data[y * width + x]; }
 };
 
 }
