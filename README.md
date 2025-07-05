@@ -33,3 +33,17 @@ xmake run
 There is a `flake.nix` in the repo, so set up your environment
 with `nix develop` in the repository root. Then run the shell
 command in the previous section and you're done.
+
+## Contributing
+
+This project uses [`pre-commit`](https://pre-commit.com/) to
+validate code and enforce a common formatting. Install `pre-commit`
+and set it up by running the following command in the project
+root:
+
+```sh
+pre-commit install
+```
+
+This enables `pre-commit` to run the lint checks and autoformats
+your code on every commit.
