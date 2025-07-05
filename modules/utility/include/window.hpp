@@ -1,15 +1,13 @@
 #ifndef __WINDOW_HPP__
 #define __WINDOW_HPP__
 
-#include "raylib-cpp/Window.hpp"
-#include "raylib.h"
+#include <raylib.h>
+
+#include <raylib-cpp/Window.hpp>
 
 namespace graphics {
 
-constinit const size_t SCREEN_WIDTH  = 160;
-constinit const size_t SCREEN_HEIGHT = 144;
-constinit const size_t TARGET_FPS    = 60;
-constinit const auto   TITLE         = "GameBoy++";
+constinit const size_t DEFAULT_FPS = 60;
 
 class DrawContext {
 public:
@@ -17,6 +15,11 @@ public:
         window.BeginDrawing();
         window.ClearBackground(RAYWHITE);
     }
+
+    constexpr DrawContext(const DrawContext&)            = delete;
+    constexpr DrawContext& operator=(const DrawContext&) = delete;
+    constexpr DrawContext(DrawContext&&)                 = delete;
+    constexpr DrawContext& operator=(DrawContext&&)      = delete;
 
     constexpr ~DrawContext() { window.EndDrawing(); }
 
@@ -26,14 +29,17 @@ private:
 
 class Window {
 public:
-    constexpr Window() { window.SetTargetFPS(TARGET_FPS); }
+    constexpr Window(int width, int height, std::string title, int target_fps = DEFAULT_FPS)
+        : window(width, height, title) {
+        window.SetTargetFPS(target_fps);
+    }
 
     constexpr auto CreateDrawContext() -> DrawContext { return DrawContext{window}; }
 
     constexpr auto ShouldClose() -> bool { return window.ShouldClose(); }
 
 private:
-    raylib::Window window = raylib::Window(SCREEN_WIDTH, SCREEN_HEIGHT, TITLE);
+    raylib::Window window;
 };
 
 }

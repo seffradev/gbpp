@@ -1,0 +1,5 @@
+target("utility")
+    set_kind("static")
+    add_includedirs("include", { public = true })
+    add_files()
+    add_packages("raylib-cpp", { public = true })

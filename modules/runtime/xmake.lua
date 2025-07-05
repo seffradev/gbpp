@@ -1,0 +1,5 @@
+target("runtime")
+    set_kind("binary")
+    add_files("src/runtime.cpp")
+    add_deps("utility", "gameboy")
+    set_default(true)

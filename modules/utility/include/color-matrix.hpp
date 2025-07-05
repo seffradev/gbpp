@@ -1,15 +1,15 @@
 #ifndef __PIXEL_ARRAY_HPP__
 #define __PIXEL_ARRAY_HPP__
 
+#include <raylib.h>
+
 #include <array>
 #include <cstddef>
-
-#include "raylib.h"
 
 namespace graphics {
 
 template <size_t width, size_t height>
-class PixelArray {
+class ColorMatrix {
 private:
     std::array<Color, width * height> data;
 
