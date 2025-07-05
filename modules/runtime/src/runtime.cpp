@@ -19,7 +19,7 @@ const int         WINDOW_HEIGHT = 144;
 const std::string WINDOW_TITLE  = "GameBoy++";
 
 auto main(int, char*[]) noexcept -> int {
-    auto _ = Logger<Level::Trace>{};
+    auto _ = Logger{Level::Trace};
 
     std::default_random_engine             generator;
     std::uniform_int_distribution<uint8_t> distribution{};

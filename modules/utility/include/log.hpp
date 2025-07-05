@@ -54,12 +54,13 @@ enum struct Level {
     Trace,
 };
 
-template <Level logLevel>
 class Logger final {
 public:
+    Level level;
+
     constexpr void
     info(std::string&& string, std::source_location source_location = std::source_location::current()) const noexcept {
-        if constexpr (logLevel < Level::Info) {
+        if (level < Level::Info) {
             return;
         }
 
@@ -68,7 +69,7 @@ public:
 
     constexpr void
     error(std::string&& string, std::source_location source_location = std::source_location::current()) const noexcept {
-        if constexpr (logLevel < Level::Error) {
+        if (level < Level::Error) {
             return;
         }
 
@@ -77,7 +78,7 @@ public:
 
     constexpr void
     trace(std::string&& string, std::source_location source_location = std::source_location::current()) const noexcept {
-        if constexpr (logLevel < Level::Trace) {
+        if (level < Level::Trace) {
             return;
         }
 
@@ -86,7 +87,7 @@ public:
 
     constexpr void warning(std::string&&        string,
                            std::source_location source_location = std::source_location::current()) const noexcept {
-        if constexpr (logLevel < Level::Warning) {
+        if (level < Level::Warning) {
             return;
         }
 
@@ -95,7 +96,7 @@ public:
 
 private:
     template <Level level>
-    constexpr void log(std::string string, std::source_location source_location) const noexcept {
+    static constexpr void log(std::string string, std::source_location source_location) noexcept {
         auto location = std::format("{}:{}", source_location.file_name(), source_location.line());
 
         if constexpr (level == Level::Info) {
